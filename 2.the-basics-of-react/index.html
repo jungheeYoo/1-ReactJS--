@@ -1,7 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <body></body>
+  <body>
+    <div id="root"></div>
+  </body>
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-  <script></script>
+  <script>
+    const root = document.getElementById('root');
+    // React element
+    // 첫 번째, 유효한 HTML 태그
+    // 두 번째, argument로 둘 수 있는 것은 property 속성, event Listener도 등록 가능
+    // 세 번째, argument로 둘 수 있는 것은 content 내용
+    const span = React.createElement(
+      'span',
+      { id: 'sexy-span' },
+      'Hello I am a span'
+    );
+    // React element를 가지고 HTML로 만들어 배치
+    // render : 사용자에게 보여준다
+    ReactDOM.render(span, root);
+  </script>
 </html>
+
+<!-- 
+  바닐라 JS에서는 HTML을 먼저 만들고, 그걸 Javascript로 가져와서 HTML을 수정
+  하지만, React JS에서는 모든 것이 Javascript로 시작해서 그 다음에 HTML이 된다
+ -->
+
+<!-- 
+  React JS는 업데이트가 필요한 element를 업데이트 한다
+  그래서 React JS가 결과물인 HTML을 업데이트할 수 있는 것이다
+  React JS는 유저에게 보여질 내용을 컨트롤할 수 있다
+  -->
+
+<!-- 
+  여기서 Javascript를 이용해 element를 생성했고
+  React JS가 그걸 HTML로 번역한다
+ -->
