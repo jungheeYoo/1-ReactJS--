@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    /* 🧮 단위 변환앱 만들기 */
+    function App() {
+      // ✅ State 만들기
+      // useState는 array를 제공, 그리고 그 첫 번째 element가 현재의 값이 됨
+      // array의 첫 번째 item은 value
+      // 두 번째 element엔 minutes를 수정해주는 modifier 함수가 들어감
+      // 두 번째는 value를 수정하고, component를 새로고침 할 때 쓰는 함수
+      const [minutes, setMinutes] = React.useState();
+
+      // ✅ onChange 함수
+      // 우리가 input에 입력한 값을 state에 전달
+      const onChange = (event) => {
+        setMinutes(event.target.value); // 데이터 업데이트, state 변경해줌
+      };
+      return (
+        // 🔸 label을 input에 연결해주기 위해서 input은 id가 있어야 함
+        // 🔸 class나 for 이런건 자바스크립트에서 이미 사용중이기 때문에 JSX에서는 다른 이름이 필요
+        <div>
+          <h1 className="hi">Super Converter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            value={minutes}
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            onChange={onChange} // 이벤트, 데이터를 업데이트 해주는 역할
+          />
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input id="hours" placeholder="Hours" type="number" />
+        </div>
+      );
+    }
+    const root = document.getElementById('root');
+    ReactDOM.render(<App />, root);
+
+    // input의 value를 state로 연결
+    // 이렇게 하면 어디서든 input의 value를 수정해 줄 수 있다
+    // 연결하는 이유는 input값을 외부에서도 수정해주기 위해서
+
+    // onChange={onChange} : 데이터를 업데이트 해주는 역할을 함
+    // change 이벤트가 일어났을 때, 즉, 사용자가 input에 뭔가를 써넣을 때,
+    // onChange 함수가 실행됨
+    // event.target.value를 얻게 되는데 바로 input value 임
+    // 이 말은 setMinutes(event.target.value); 이 데이터가 업데이트 된다는 얘기이다.
+    // input도 업데이트 됨
+  </script>
+</html>
