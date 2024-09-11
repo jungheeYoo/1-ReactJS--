@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // ✅ state 변경하기
+    // ✅ React.useState() 사용
+    // 데이터를 counter 같은 변수에 담는 것이 아닌 다른 방법과 데이터 업데이트
+    // let counter = 0;
+    // function countUp() {
+    //   // code
+    // }
+    const root = document.getElementById('root');
+    function App() {
+      // const data = React.useState();
+      // console.log(data);
+      // [undefined, ƒ] : [초기 값, 초기 값을 바꿀 때 사용하는 함수]
+
+      // ✨ useState는 array를 제공, 그리고 그 첫 번째 element가 현재의 값이 됨
+      // React.useState()는 배열을 준다
+      // 초기값 설정 가능
+      // React.useState(0); => [0, ƒ]
+      // const data = React.useState(0);
+
+      // 💩 배열에서 요소를 꺼내오는 방법
+      // const counter = data[0];
+      // const modifier = data[1];
+
+      // 👍 배열에서 요소를 꺼내오는 방법
+      const [counter, setCounter] = React.useState(0);
+      return (
+        <div>
+          <h3>Total clicks: {counter}</h3>
+
+          <button>Click me</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
