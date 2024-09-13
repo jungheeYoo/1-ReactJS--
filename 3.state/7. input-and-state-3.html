@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    /* 🧮 단위 변환 앱 만들기 */
+    /* 단위 변환 뒤집기 */
+    function App() {
+      // ✅ State 만들기
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false); // 초기값 false로 시작
+      // ✅ onChange 함수
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+      // ✅ reset 함수
+      const reset = () => setAmount(0);
+      // ✅ onFlip 함수
+      // inverted값을 반대로 전환시키는 역할
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      }; // current가 ture상태면 -> false를 반환
+      return (
+        <div>
+          <h1 className="hi">Super Converter</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              // 만약 우리가 flipped 상태라면, 시에서 분 단위로 변환
+              // 만약 flipped 상태가 아니라면, 그냥 우리가 Input에 입력한 amount 값을 입력한 그대로 보여줄거고
+              value={flipped ? amount * 60 : amount} // 시 => 분
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+              // disabled={flipped === true} // 플립이 동작 되면 입력 창 안되게
+              disabled={flipped}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              // 만약 flipped 상태면, 그 말은, 현재 시에서 분단위로 변환하고 있는 상태라는 얘기고
+              // 그냥 우리가 쓴 숫자를 input 창에 보여주면 되는 것
+              // 만약 flipped 상태가 아니라면, amount / 60 값을 보여줌
+              value={flipped ? amount : Math.round(amount / 60)} // 분 => 시
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              onChange={onChange}
+              // 플립을 하지 않으면 입력 창 안되게
+              // disabled={flipped === false} // flipped가 false라면, disabled는 true가 되어야함
+              disabled={!flipped}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>Flip</button>
+        </div>
+      );
+    }
+    const root = document.getElementById('root');
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
