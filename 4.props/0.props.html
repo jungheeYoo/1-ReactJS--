@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // ✅ 함수형 컴포넌트
+    // Props는 일종의 방식. 부모 컴포넌트로부터 자식 컴포넌트에 데이터를 보낼 수 있게 해주는 방법.
+    // 재사용 가능
+    // 컴포넌트는 단지 함수이다. 어떤 JSX를 반환하는 (ex.return <button>Save Change</button>)
+    // 여기 "()" 괄호로 argument(인자)를 받음. 리액트가 넣어주는 것.
+    // 이 인자 이름을 props라고 부르고, Btn으로부터 전달 받는 properties이다
+    // props는 첫 번째이자 유일한 인자. Btn이 전달 받는 유일한 인자이다.
+    // function Btn(props) 보통 아래처럼 줄여서 씀 shortcut {
+    // property를 오브젝트로부터 꺼내는 것
+    function Btn({ text, big }) {
+      // console.log(props); // {text: "Save Change", {text: "Continue"}
+      console.log(text, big); // Save Change true, Continue false
+      return (
+        // 🔸 스타일 바꾸는 방법 - 기본
+        // 버튼 Tag내의 스타일 변경
+        // 자바스크립트 object 형식으로 쓴다
+        <button
+          style={{
+            backgroundColor: 'tomato',
+            color: 'white',
+            padding: '10px 20px',
+            border: 0,
+            borderRadius: 10,
+            fontSize: big ? 18 : 16,
+          }}
+        >
+          {/* {props.text} 아래가 줄임 */}
+          {text}
+        </button>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          {/* 함수 부르는 것 */}
+          {/* 
+            🔸 데이터 전달 :
+            이벤트 등록하는 방법처럼 쓴다 (이벤트 리스너는 아님)
+            Btn() 함수를 불러서 banana라는 인자를 이런식으로 보내는 것과 같은 것이다
+            Btn({banana="Save Change"}) 이렇게 쓰는 것을 아래처럼 바꿈 
+            이 데이터들을 첫 번째 인자로 넣어주는 것임 => props
+            우리가 이쪽에서 보낸 모든 것들을 갖는 오브젝트 
+            props는 오브젝트이다
+        */}
+          <Btn text="Save Change" big={true} />
+          <Btn text="Continue" big={false} />
+        </div>
+      );
+    }
+    const root = document.getElementById('root');
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
