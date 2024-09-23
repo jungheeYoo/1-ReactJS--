@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <!-- Props Types 설치 -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // fontSize = 14 : 기본 값 지정 - 자바스크립트 문법
+    function Btn({ text, fontSize = 12 }) {
+      return (
+        <button
+          style={{
+            backgroundColor: 'tomato',
+            color: 'white',
+            padding: '10px 20px',
+            border: 0,
+            borderRadius: 10,
+            fontSize: fontSize,
+          }}
+        >
+          {text}
+        </button>
+      );
+    }
+
+    // ✅ Props Types
+    // 타입 지정 (오류를 알기 위한) - 리액트 문법
+    // 리액트는 모른다 text자리에 문자열이 와야할 지 fontSize에 숫자가 와야할 지
+    // 그래서 정해주는 것
+    Btn.propTypes = {
+      // .isRequired : 필수적인 것으로 만들고 싶다면
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
+    function App() {
+      return (
+        <div>
+          <Btn text="Save Changes" fontSize={18} />
+          <Btn text={'Continue'} />
+        </div>
+      );
+    }
+    const root = document.getElementById('root');
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
