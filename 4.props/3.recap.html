@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // function Btn(props) {
+    function Btn({ text, fontSize = 12 }) {
+      return (
+        <button
+          style={{
+            backgroundColor: 'tomato',
+            color: 'white',
+            padding: '10px 20px',
+            border: 0,
+            borderRadius: 10,
+            fontSize: props.fontSize,
+          }}
+        >
+          {/* {props.text} */}
+          {text}
+        </button>
+      );
+    }
+
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
+    function App() {
+      return (
+        <div>
+          <Btn text="Save Changes" fontSize={18} />
+          <Btn text={'Continue'} />
+        </div>
+      );
+    }
+    const root = document.getElementById('root');
+    ReactDOM.render(<App />, root);
+
+    // props는 동일한 부분을 재사용 가능하게 하고
+    // 변경사항이 있는 부분들을 화면에 표시하기 위해 데이터를 보냄
+    // props는 인자를 이용해 컴포넌트에 데이터를 보내기 위하 통로
+    // prop들은 렌더링되고 있는 Btn 컴포넌트의 부모로부터 전달되고 있있음.
+    // Btn컴포넌트의 prop들에 접근할 수 있는 방법은,
+    // 이 Btn 컴포넌트 함수의 첫 번째 인자 안에서 가능
+    // 전달된 모든 prop들을 하나의 오브젝트로서 받는다 { text, fontSize = 12 }
+    // (props.text) 이런식으로 해도 됨
+    // props를 전달할 때의 이름과 받아서 사용할 때의 이름은 동일해야함
+  </script>
+</html>
