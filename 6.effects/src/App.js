@@ -54,7 +54,7 @@
 // export default App;
 
 /////////////////////////////////////////////////////////
-// 6-2. Deps
+// 6-2~3. Deps, Recap
 
 import { useEffect, useState } from 'react';
 
