@@ -1,4 +1,5 @@
 // 7-3. Movie App
+// 영화 정보 API 가져와서 보여주기
 
 import { useEffect, useState } from 'react';
 
