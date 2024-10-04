@@ -139,30 +139,62 @@
 // // 한 번에 하나의 Route만 렌더링 하기 위해 Switch를 씀
 
 ////////////////////////////////////////////////////////////
-// 7-6. Parameters
+// // v5 방식 사용, Switch와 Route를 사용하여 라우팅을 처리함.
 
-// React Router는 다이나믹(동적) url을 지원해줌
-// 다이나믹하다는 건 url에 변수를 넣을 수 있다는 의미이다
+// // React Router는 다이나믹(동적) url을 지원해줌
+// // 다이나믹하다는 건 url에 변수를 넣을 수 있다는 의미이다
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import Detail from './routes/Detail';
+// import Home from './routes/Home';
+
+// // 변수 만들어주고 이름은 맘대로 할 수 있음
+// // 부모인 여기서 Movie 컴포넌트를 렌더링 하고 있으니 id를 Movie.js 앱에 넘겨줘야함
+// function App() {
+//   return (
+//     <Router>
+//       <Switch>
+//         <Route path="/movie/:id">
+//           <Detail />
+//         </Route>
+//         <Route path="/">
+//           <Home />
+//         </Route>
+//       </Switch>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+////////////////////////////////////////////////////////////
+// react-router-dom v6 이상 사용
+import * as React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './routes/Home'; //
 import Detail from './routes/Detail';
-import Home from './routes/Home';
 
-// 변수 만들어주고 이름은 맘대로 할 수 있음
-// 부모인 여기서 Movie 컴포넌트를 렌더링 하고 있으니 id를 Movie.js 앱에 넘겨줘야함
-function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/movie/:id">
-          <Detail />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
-  );
-}
+const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: `${process.env.PUBLIC_URL}/`, // deploy 하기 위해서 <= '/' 이것을 바꿔줌
+      element: <Home />,
+    },
+    {
+      path: '/movie/:id',
+      element: <Detail />,
+    },
+    {
+      path: '/hello',
+      element: <h1>Hello</h1>,
+    },
+  ]);
+  return <RouterProvider router={router} />;
+};
 
 export default App;
+
+// 그리고 깃허브 브랜치를 gh-pages로 바꿈
+// 제너럴과, 페이지 모두 다 확인
+// 제이슨 파일에서 주소 넣을 때 마지막에 / 넣음
+// gitignore 파일에서 # production 에 build 없애줌
