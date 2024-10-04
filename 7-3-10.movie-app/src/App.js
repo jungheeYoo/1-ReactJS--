@@ -101,8 +101,6 @@
 // // 7-5. React Router
 // // npm i react-router-dom@5.3.0 버전 사용
 
-// 라우팅: 웹 애플리케이션에서 다른 페이지나 뷰로 사용자를 네비게이션하는 프로세스
-
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import Detail from './routes/Detail';
 // import Home from './routes/Home';
