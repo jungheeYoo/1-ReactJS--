@@ -73,11 +73,53 @@
 
 // export default App;
 
-// 7-4. Movie App
-// 컴포넌트 폴더 생성, 리액트 앱에서 페이지 전환을 위한 라우터 폴더 생성
+////////////////////////////////////////////////////////////
+// // 7-4. Movie App
+// // 컴포넌트 폴더 생성, 리액트 앱에서 페이지 전환을 위한 라우터 폴더 생성
+
+// function App() {
+//   return null;
+// }
+
+// export default App;
+
+////////////////////////////////////////////////////////////
+// 7-5. React Router
+// npm i react-router-dom@5.3.0 버전 사용
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Detail from './routes/Detail';
+import Home from './routes/Home';
 
 function App() {
-  return null;
+  return (
+    <Router>
+      <Switch>
+        <Route path="/movie">
+          <Detail />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
+
+// ✅ react-router-dom 컴포넌트 사용법
+// 유저가 해당 경로에있으면 라우터를 렌더링 해줌
+// 해당 라우터 함수를 import 해주면 됨
+
+// path="/" 홈화면 가기
+// 누군가 우리 웹사이트의 '/' url에 있다면, Home 컴포넌트를 보여줌
+// react-router-dom의 컴포넌트를 가져다 씀
+// 아래 컴포넌트들이 하는 일은 url을 바라봄
+// url이 바뀌면 어떤 것을 보여줄지 결정함
+// 즉, 유저가 '/movie' path에 있다면 Detail컴포넌트를 보여주라고 하면 됨
+
+// Switch가 하는 일은 Route를 찾는 것
+// Route는 /movies/123 이런 URL을 의미함
+// 그리고 Route를 찾으면 컴포넌트를 렌더링 함
+// 한 번에 하나의 Route만 렌더링 하기 위해 Switch를 씀
